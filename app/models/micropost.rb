@@ -3,9 +3,9 @@ class Micropost < ApplicationRecord
   belongs_to :user
   has_many :retweetings
 
-  scope :timeline, -> { Micropost.order(:retweet_number, :desc).limit(10) }
+  attr_accessor :parent_id
 
   def increase_retweet_number!
-    update(retweet_number: retweet_number + 1)
+    update(retweet_number: retweet_number.to_i + 1)
   end
 end
